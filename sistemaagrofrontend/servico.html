@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SistemaAgro - Serviços</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        
+        .card {
+            border: 1px solid #dee2e6;
+            border-radius: 0.375rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+        
+        .table th {
+            background-color: #e9ecef;
+        }
+        
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+        }
+        
+        .breadcrumb {
+            background-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="sb-nav-fixed">
+    <!-- Include Header -->
+    <?php include 'header.html'; ?>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Núcleo</div>
+                        <a class="nav-link" href="index.html">Painel de Controle</a>
+                        <div class="sb-sidenav-menu-heading">Interface</div>
+                        <a class="nav-link" href="agendamento.html">Agendamentos</a>
+                        <a class="nav-link" href="recurso.html">Recursos</a>
+                        <a class="nav-link" href="servico.html">Serviços</a>
+                        <a class="nav-link" href="agricultores.html">Agricultores</a>
+                        <a class="nav-link" href="tecnicos.html">Técnicos</a>
+                        <a class="nav-link" href="notificacoes.html">Notificações</a>
+                        <a class="nav-link" href="auditoria.html">Auditoria</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">Serviços</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">Serviços</li>
+                    </ol>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-header">Novo Serviço</div>
+                                <div class="card-body">
+                                    <form>
+                                        <div class="mb-3">
+                                            <label for="serviceName" class="form-label">Nome do Serviço</label>
+                                            <input type="text" class="form-control" id="serviceName" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="serviceDescription" class="form-label">Descrição</label>
+                                            <textarea class="form-control" id="serviceDescription" rows="3" required></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="serviceDuration" class="form-label">Duração</label>
+                                            <input type="time" class="form-control" id="serviceDuration" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-success">Adicionar Serviço</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-header">Serviços Existentes</div>
+                                <div class="card-body">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Nome</th>
+                                                <th>Descrição</th>
+                                                <th>Duração</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Consultoria Agrícola</td>
+                                                <td>Serviço de consultoria para agricultores.</td>
+                                                <td>1h 30m</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Aplicação de Insumos</td>
+                                                <td>Aplicação de fertilizantes e defensivos.</td>
+                                                <td>2h</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- Include Footer -->
+            <?php include 'footer.html'; ?>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
