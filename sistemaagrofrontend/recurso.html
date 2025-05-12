@@ -6,90 +6,185 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SistemaAgro - Recursos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="css/styles.css" rel="stylesheet" /> <style>
+        body {
+            background-color: #f4f7f6; /* Um cinza mais claro e suave */
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais moderna */
+        }
+
+        /* Barra de Navegação Lateral */
+        .sb-sidenav-dark {
+            background-color: #2c3e50; /* Azul escuro mais moderno */
+        }
+
+        .sb-sidenav-dark .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave */
+        }
+
+        .sb-sidenav-dark .nav-link:hover {
+            color: #ffffff;
+            background-color: #34495e; /* Leve destaque no hover */
+        }
+
+        .sb-sidenav-dark .sb-sidenav-menu-heading {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+        /* Adicionar um ícone antes do link (Exemplo com Bootstrap Icons) */
+        /* .sb-sidenav-dark .nav-link .bi { margin-right: 8px; } */
+
+
+        /* Conteúdo Principal */
+        #layoutSidenav_content {
+            background-color: #f4f7f6;
+        }
+
+        .container-fluid {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        h1.mt-4 {
+            color: #2c3e50; /* Cor do título principal */
+            font-weight: 600;
+        }
+
+        .breadcrumb {
+            background-color: transparent;
+            padding: 0.5rem 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-item a {
+            color: #28a745; /* Cor verde para links no breadcrumb */
+            text-decoration: none;
+        }
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb-item.active {
+            color: #555;
+        }
+
+        /* Cards */
+        .card {
+            border: none; /* Remover borda padrão */
+            border-radius: 0.5rem; /* Bordas mais arredondadas */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra mais suave e moderna */
+            margin-bottom: 2rem;
+            transition: transform 0.2s ease-in-out; /* Efeito de levantar no hover */
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* Leve elevação no hover */
+        }
+
+        .card-header {
+            background-color: #ffffff; /* Cabeçalho do card branco */
+            color: #2c3e50; /* Cor do texto do cabeçalho */
+            font-weight: 600;
+            border-bottom: 1px solid #e9ecef;
+            padding: 1rem 1.25rem;
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+        }
+        /* .card-header .bi { margin-right: 8px; } */ /* Para ícones no cabeçalho do card */
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Formulários */
+        .form-label {
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .form-control {
+            border-radius: 0.3rem;
+            border: 1px solid #ced4da;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .form-control:focus {
+            border-color: #28a745; /* Cor do bootstrap success */
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        }
+
+        /* Botões */
+        .btn {
+            border-radius: 0.3rem;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+            border-color: #1e7e34;
+            transform: translateY(-2px); /* Leve efeito de clique */
+        }
+
+        .btn-success:active {
+            transform: translateY(0);
+        }
+
+
+        /* Tabelas */
+        .table {
+            margin-bottom: 0; /* Remover margem inferior se dentro de um card-body sem mais elementos */
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .table th {
+            background-color: #e9ecef; /* Fundo do cabeçalho da tabela */
+            color: #2c3e50; /* Cor do texto do cabeçalho */
+            font-weight: 600;
+            border-bottom-width: 2px;
+            border-color: #dee2e6;
+            text-align: left;
+            padding: 0.9rem;
+        }
+
+        .table td {
+            padding: 0.9rem;
+            vertical-align: middle;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .table tbody tr:nth-of-type(odd) {
+             background-color: rgba(0,0,0,0.02); /* Listras sutis */
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f1f1; /* Mantém o hover original, mas pode ser suavizado */
+        }
+
+        /* Ajustes para responsividade da tabela, se necessário */
+        .table-responsive {
+            border-radius: 0.3rem; /* Para aplicar bordas arredondadas ao container da tabela responsiva */
+        }
+
+        /* Footer (se 'footer.html' tiver conteúdo que precise de estilo similar) */
+        /* Exemplo: .footer { background-color: #2c3e50; color: white; padding: 1rem 0; text-align: center; } */
+
+    </style>
 </head>
 
 <body class="sb-nav-fixed">
-    <!-- Include Header -->
     <?php include 'header.html'; ?>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="sb-sidenav-menu">
-                    <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Núcleo</div>
-                        <a class="nav-link" href="index.html">Painel de Controle</a>
-                        <div class="sb-sidenav-menu-heading">Interface</div>
-                        <a class="nav-link" href="agendamento.html">Agendamentos</a>
-                        <a class="nav-link" href="recurso.html">Recursos</a>
-                        <a class="nav-link" href="servico.html">Serviços</a>
-                        <a class="nav-link" href="agricultores.html">Agricultores</a>
-                        <a class="nav-link" href="tecnicos.html">Técnicos</a>
-                        <a class="nav-link" href="notificacoes.html">Notificações</a>
-                        <a class="nav-link" href="auditoria.html">Auditoria</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <div id="layoutSidenav_content">
-            <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">Recursos</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Recursos</li>
-                    </ol>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card mb-4">
-                                <div class="card-header">Novo Recurso</div>
-                                <div class="card-body">
-                                    <form>
-                                        <div class="mb-3">
-                                            <label for="resourceName" class="form-label">Nome do Recurso</label>
-                                            <input type="text" class="form-control" id="resourceName" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="resourceType" class="form-label">Tipo de Recurso</label>
-                                            <input type="text" class="form-control" id="resourceType" required>
-                                        </div>
-                                        <button type="submit" class="btn btn-success">Adicionar Recurso</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card mb-4">
-                                <div class="card-header">Recursos Existentes</div>
-                                <div class="card-body">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Nome</th>
-                                                <th>Tipo</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Trator</td>
-                                                <td>Máquina</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Arado</td>
-                                                <td>Implemento</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-            <!-- Include Footer -->
-            <?php include 'footer.html'; ?>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+            <nav class="
