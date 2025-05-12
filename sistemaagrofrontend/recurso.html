@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -187,4 +188,129 @@
     <?php include 'header.html'; ?>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-            <nav class="
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Núcleo</div>
+                        <a class="nav-link" href="index.html">
+                            Painel de Controle
+                        </a>
+                        <div class="sb-sidenav-menu-heading">Interface</div>
+                        <a class="nav-link" href="agendamento.html">
+                            Agendamentos
+                        </a>
+                        <a class="nav-link active" href="recurso.html"> Recursos
+                        </a>
+                        <a class="nav-link" href="servico.html">
+                            Serviços
+                        </a>
+                        <a class="nav-link" href="agricultores.html">
+                            Agricultores
+                        </a>
+                        <a class="nav-link" href="tecnicos.html">
+                            Técnicos
+                        </a>
+                        <a class="nav-link" href="notificacoes.html">
+                            Notificações
+                        </a>
+                        <a class="nav-link" href="auditoria.html">
+                            Auditoria
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">Recursos</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="index.html">Painel de Controle</a></li>
+                        <li class="breadcrumb-item active">Recursos</li>
+                    </ol>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    Novo Recurso
+                                </div>
+                                <div class="card-body">
+                                    <form action="processa_recurso.php" method="POST"> <div class="mb-3">
+                                            <label for="resourceName" class="form-label">Nome do Recurso</label>
+                                            <input type="text" class="form-control" id="resourceName" name="resourceName" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="resourceType" class="form-label">Tipo de Recurso</label>
+                                            <input type="text" class="form-control" id="resourceType" name="resourceType" required>
+                                            </div>
+                                        <button type="submit" class="btn btn-success w-100"> Adicionar Recurso
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    Recursos Existentes
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive"> <table class="table table-hover"> <thead>
+                                                <tr>
+                                                    <th>Nome</th>
+                                                    <th>Tipo</th>
+                                                    <th>Ações</th> </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Trator John Deere 6110J</td>
+                                                    <td>Máquina</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-sm btn-outline-primary me-1" title="Editar">
+                                                            <i class="bi bi-pencil-square"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-sm btn-outline-danger" title="Excluir">
+                                                            <i class="bi bi-trash-fill"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Arado Reversível 3 Hastes</td>
+                                                    <td>Implemento</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-sm btn-outline-primary me-1" title="Editar">
+                                                            <i class="bi bi-pencil-square"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-sm btn-outline-danger" title="Excluir">
+                                                            <i class="bi bi-trash-fill"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Colheitadeira SLC 7700</td>
+                                                    <td>Máquina</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-sm btn-outline-primary me-1" title="Editar">
+                                                            <i class="bi bi-pencil-square"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-sm btn-outline-danger" title="Excluir">
+                                                            <i class="bi bi-trash-fill"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <?php include 'footer.html'; ?>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+
+</html>
