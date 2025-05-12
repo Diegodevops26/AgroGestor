@@ -6,44 +6,177 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SistemaAgro - Agendamentos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/styles.css" rel="stylesheet" />
-    <style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="css/styles.css" rel="stylesheet" /> <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #f4f7f6; /* Um cinza mais claro e suave */
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais moderna */
         }
-        
+
+        /* Barra de Navegação Lateral */
+        .sb-sidenav-dark {
+            background-color: #2c3e50; /* Azul escuro mais moderno */
+        }
+
+        .sb-sidenav-dark .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave */
+        }
+
+        .sb-sidenav-dark .nav-link:hover {
+            color: #ffffff;
+            background-color: #34495e; /* Leve destaque no hover */
+        }
+
+        .sb-sidenav-dark .sb-sidenav-menu-heading {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+        /* Adicionar um ícone antes do link (Exemplo com Bootstrap Icons) */
+        /* .sb-sidenav-dark .nav-link .bi { margin-right: 8px; } */
+
+
+        /* Conteúdo Principal */
+        #layoutSidenav_content {
+            background-color: #f4f7f6;
+        }
+
+        .container-fluid {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        h1.mt-4 {
+            color: #2c3e50; /* Cor do título principal */
+            font-weight: 600;
+        }
+
+        .breadcrumb {
+            background-color: transparent;
+            padding: 0.5rem 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-item.active {
+            color: #555;
+        }
+
+        /* Cards */
         .card {
-            border: 1px solid #dee2e6;
-            border-radius: 0.375rem;
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            border: none; /* Remover borda padrão */
+            border-radius: 0.5rem; /* Bordas mais arredondadas */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra mais suave e moderna */
+            margin-bottom: 2rem;
+            transition: transform 0.2s ease-in-out; /* Efeito de levantar no hover */
         }
-        
-        .table th {
-            background-color: #e9ecef;
+
+        .card:hover {
+            transform: translateY(-5px); /* Leve elevação no hover */
         }
-        
-        .table tbody tr:hover {
-            background-color: #f1f1f1;
+
+        .card-header {
+            background-color: #ffffff; /* Cabeçalho do card branco */
+            color: #2c3e50; /* Cor do texto do cabeçalho */
+            font-weight: 600;
+            border-bottom: 1px solid #e9ecef;
+            padding: 1rem 1.25rem;
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
         }
-        
+        /* .card-header .bi { margin-right: 8px; } */ /* Para ícones no cabeçalho do card */
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Formulários */
+        .form-label {
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .form-control {
+            border-radius: 0.3rem;
+            border: 1px solid #ced4da;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .form-control:focus {
+            border-color: #28a745; /* Cor do bootstrap success */
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        }
+
+        /* Botões */
+        .btn {
+            border-radius: 0.3rem;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+        }
+
         .btn-success {
             background-color: #28a745;
             border-color: #28a745;
         }
-        
+
         .btn-success:hover {
             background-color: #218838;
             border-color: #1e7e34;
+            transform: translateY(-2px); /* Leve efeito de clique */
         }
-        
-        .breadcrumb {
-            background-color: transparent;
+
+        .btn-success:active {
+            transform: translateY(0);
         }
+
+
+        /* Tabelas */
+        .table {
+            margin-bottom: 0; /* Remover margem inferior se dentro de um card-body sem mais elementos */
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .table th {
+            background-color: #e9ecef; /* Fundo do cabeçalho da tabela */
+            color: #2c3e50; /* Cor do texto do cabeçalho */
+            font-weight: 600;
+            border-bottom-width: 2px;
+            border-color: #dee2e6;
+            text-align: left;
+            padding: 0.9rem;
+        }
+
+        .table td {
+            padding: 0.9rem;
+            vertical-align: middle;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .table tbody tr:nth-of-type(odd) {
+             background-color: rgba(0,0,0,0.02); /* Listras sutis */
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f1f1; /* Mantém o hover original, mas pode ser suavizado */
+            /* background-color: rgba(40, 167, 69, 0.05); /* Exemplo de hover com cor tema */
+        }
+
+        /* Ajustes para responsividade da tabela, se necessário */
+        .table-responsive {
+            border-radius: 0.3rem;
+        }
+
+        /* Footer (se 'footer.html' tiver conteúdo que precise de estilo similar) */
+        /* Exemplo: .footer { background-color: #2c3e50; color: white; padding: 1rem 0; text-align: center; } */
+
     </style>
 </head>
 
 <body class="sb-nav-fixed">
-    <!-- Include Header -->
     <?php include 'header.html'; ?>
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
@@ -51,15 +184,31 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Núcleo</div>
-                        <a class="nav-link" href="index.html">Painel de Controle</a>
+                        <a class="nav-link" href="index.html">
+                            Painel de Controle
+                        </a>
                         <div class="sb-sidenav-menu-heading">Interface</div>
-                        <a class="nav-link" href="agendamento.html">Agendamentos</a>
-                        <a class="nav-link" href="recurso.html">Recursos</a>
-                        <a class="nav-link" href="servico.html">Serviços</a>
-                        <a class="nav-link" href="agricultores.html">Agricultores</a>
-                        <a class="nav-link" href="tecnicos.html">Técnicos</a>
-                        <a class="nav-link" href="notificacoes.html">Notificações</a>
-                        <a class="nav-link" href="auditoria.html">Auditoria</a>
+                        <a class="nav-link" href="agendamento.html">
+                            Agendamentos
+                        </a>
+                        <a class="nav-link" href="recurso.html">
+                            Recursos
+                        </a>
+                        <a class="nav-link" href="servico.html">
+                            Serviços
+                        </a>
+                        <a class="nav-link" href="agricultores.html">
+                            Agricultores
+                        </a>
+                        <a class="nav-link" href="tecnicos.html">
+                            Técnicos
+                        </a>
+                        <a class="nav-link" href="notificacoes.html">
+                            Notificações
+                        </a>
+                        <a class="nav-link" href="auditoria.html">
+                            Auditoria
+                        </a>
                     </div>
                 </div>
             </nav>
@@ -69,12 +218,15 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Agendamentos</h1>
                     <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="index.html">Painel de Controle</a></li>
                         <li class="breadcrumb-item active">Agendamentos</li>
                     </ol>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card mb-4">
-                                <div class="card-header">Novo Agendamento</div>
+                                <div class="card-header">
+                                    Novo Agendamento
+                                </div>
                                 <div class="card-body">
                                     <form action="processa_agendamento.php" method="POST">
                                         <div class="mb-3">
@@ -101,59 +253,60 @@
                                             <label for="endTime" class="form-label">Horário de Fim</label>
                                             <input type="time" class="form-control" id="endTime" name="endTime" required>
                                         </div>
-                                        <button type="submit" class="btn btn-success">Agendar</button>
+                                        <button type="submit" class="btn btn-success w-100"> Agendar
+                                        </button>
                                     </form>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="card mb-4">
-                                <div class="card-header">Agendamentos Existentes</div>
+                                <div class="card-header">
+                                    Agendamentos Existentes
+                                </div>
                                 <div class="card-body">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Nome do Usuário</th>
-                                                <th>Nome do Recurso</th>
-                                                <th>Nome do Serviço</th>
-                                                <th>Data</th>
-                                                <th>Horário de Início</th>
-                                                <th>Horário de Fim</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>João Silva</td>
-                                                <td>Trator</td>
-                                                <td>Plantio</td>
-                                                <td>1 de Outubro de 2023</td>
-                                                <td>09:00</td>
-                                                <td>10:00</td>
-                                                <td>Confirmado</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Maria Oliveira</td>
-                                                <td>Colheitadeira</td>
-                                                <td>Colheita</td>
-                                                <td>2 de Outubro de 2023</td>
-                                                <td>11:00</td>
-                                                <td>12:00</td>
-                                                <td>Pendente</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover"> <thead>
+                                                <tr>
+                                                    <th>Nome do Usuário</th>
+                                                    <th>Recurso</th>
+                                                    <th>Serviço</th>
+                                                    <th>Data</th>
+                                                    <th>Início</th>
+                                                    <th>Fim</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>João Silva</td>
+                                                    <td>Trator</td>
+                                                    <td>Plantio</td>
+                                                    <td>01/10/2023</td> <td>09:00</td>
+                                                    <td>10:00</td>
+                                                    <td><span class="badge bg-success">Confirmado</span></td> </tr>
+                                                <tr>
+                                                    <td>Maria Oliveira</td>
+                                                    <td>Colheitadeira</td>
+                                                    <td>Colheita</td>
+                                                    <td>02/10/2023</td>
+                                                    <td>11:00</td>
+                                                    <td>12:00</td>
+                                                    <td><span class="badge bg-warning text-dark">Pendente</span></td>
+                                                </tr>
+                                                </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </main>
-            <!-- Include Footer -->
             <?php include 'footer.html'; ?>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    </body>
 
 </html>
