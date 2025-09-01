@@ -7,392 +7,250 @@
     <title>SistemaAgro - Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* CSS Unificado que temos desenvolvido */
+        /* =================================================================
+           DESIGN SYSTEM - SISTEMA AGRO (V2)
+           ================================================================= */
+
+        /* 1. Variáveis de Cor e Configurações Globais */
+        :root {
+            --cor-primaria: #28a745;
+            --cor-secundaria: #2c3e50;
+            --cor-fundo: #f0f2f5;
+            --cor-texto: #343a40;
+            --cor-texto-claro: #6c757d;
+            --raio-borda: 0.75rem;
+            --sombra-padrao: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --sombra-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --sidenav-width: 240px; /* Largura da barra lateral */
+            --topnav-height: 56px; /* Altura da barra superior */
+        }
+
         body {
-            background-color: #f4f7f6;
-            color: #333;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            font-family: 'Poppins', sans-serif;
         }
 
-        /* Barra de Navegação Superior (Topnav) */
+        /* 2. Barra de Navegação Superior (Topnav) */
         .sb-topnav {
-            background-color: #2c3e50 !important; /* Nosso azul escuro padrão */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .sb-topnav .navbar-brand {
-            font-weight: 600;
-        }
-        .sb-topnav .btn-link { /* Botão de toggle da sidebar */
-            color: rgba(255,255,255,0.8);
-        }
-        .sb-topnav .btn-link:hover {
-            color: #ffffff;
-        }
-        .sb-topnav .dropdown-menu {
-            border-radius: 0.3rem;
-            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
-            border: none;
-        }
-
-
-        /* Barra de Navegação Lateral (Sidenav) */
-        .sb-sidenav-dark {
-            background-color: #2c3e50;
-        }
-        .sb-sidenav-dark .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-        .sb-sidenav-dark .nav-link.active {
-            color: #ffffff;
-            background-color: #1abc9c; /* Verde/azul para destaque do ativo */
-        }
-        .sb-sidenav-dark .nav-link:hover {
-            color: #ffffff;
-            background-color: #34495e;
-        }
-        .sb-sidenav-dark .sb-sidenav-menu-heading {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.85rem;
-        }
-        .sb-sidenav-dark .nav-link .bi {
-            margin-right: 0.6rem; /* Espaçamento para ícones na Sidenav */
-            font-size: 1rem; /* Tamanho dos ícones na Sidenav */
-            width: 20px; /* Alinhamento */
-            text-align: center;
-            vertical-align: middle;
-        }
-
-        /* Conteúdo Principal */
-        #layoutSidenav_content {
-            background-color: #f4f7f6;
-        }
-        main {
-            padding-top: 1.5rem;
-            padding-bottom: 1.5rem;
-        }
-        .container-fluid { /* Ajustado para consistência */
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-        }
-
-        h1.mt-4 {
-            color: #2c3e50;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .breadcrumb {
-            background-color: transparent;
-            padding: 0.5rem 0; /* Removido padding lateral para alinhar com container */
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-        }
-        .breadcrumb-item a {
-            color: #28a745;
-            text-decoration: none;
-        }
-        .breadcrumb-item a:hover {
-            text-decoration: underline;
-        }
-        .breadcrumb-item.active {
-            color: #555;
-        }
-
-        /* Cards Padrão (para formulários, tabelas, etc.) */
-        .card {
-            border: none;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            margin-bottom: 1.5rem; /* Ajustado mb-4 para consistência */
-        }
-        .card-header {
             background-color: #ffffff;
-            color: #2c3e50;
-            font-weight: 600;
-            border-bottom: 1px solid #e9ecef;
-            padding: 1rem 1.25rem;
-            border-top-left-radius: 0.5rem;
-            border-top-right-radius: 0.5rem;
+            box-shadow: var(--sombra-padrao);
+            height: var(--topnav-height);
+            z-index: 1039;
         }
-        .card-header .bi {
-             margin-right: 0.5rem;
-        }
-        .card-body {
-            padding: 1.5rem;
+        .sb-topnav .navbar-brand { color: var(--cor-secundaria); font-weight: 600; }
+        .sb-topnav .btn-link { color: var(--cor-texto-claro); }
+        .sb-topnav .btn-link:hover { color: var(--cor-primaria); }
+        .sb-topnav .dropdown-menu { border-radius: var(--raio-borda); box-shadow: var(--sombra-hover); border: none; padding: 0.5rem 0; }
+        .sb-topnav .dropdown-item { padding: 0.75rem 1.25rem; }
+        .sb-topnav .dropdown-item .bi { color: var(--cor-texto-claro); margin-right: 0.75rem; }
+
+        /* 3. Barra de Navegação Lateral (Sidenav) */
+        .sb-sidenav-dark { background-color: var(--cor-secundaria); }
+        .sb-sidenav-dark .nav-link { color: rgba(255, 255, 255, 0.7); transition: all 0.2s ease; padding: 0.9rem 1.5rem; border-left: 4px solid transparent; }
+        .sb-sidenav-dark .nav-link.active { color: #ffffff; background-color: rgba(255, 255, 255, 0.05); border-left: 4px solid var(--cor-primaria); }
+        .sb-sidenav-dark .nav-link:hover { color: #ffffff; background-color: rgba(255, 255, 255, 0.1); }
+        .sb-sidenav-dark .sb-sidenav-menu-heading { color: rgba(255, 255, 255, 0.4); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; padding: 1.5rem 1.5rem 0.75rem; }
+        .sb-sidenav-dark .nav-link .bi { margin-right: 0.75rem; width: 20px; text-align: center; }
+        .sb-sidenav-footer { background-color: rgba(0,0,0,0.2); padding: 1rem 1.5rem; }
+
+        /* 4. Conteúdo Principal */
+        main { padding: 2rem; }
+        h1.display-5 { color: var(--cor-secundaria); font-weight: 600; }
+        .breadcrumb { background-color: transparent; padding: 0; font-size: 0.9rem; }
+
+        /* 5. Cards de Dashboard (Info Cards) */
+        .dashboard-card { border: none; border-radius: var(--raio-borda); color: #fff; transition: all 0.3s ease; position: relative; overflow: hidden; box-shadow: var(--sombra-padrao); }
+        .dashboard-card:hover { transform: translateY(-8px); box-shadow: var(--sombra-hover); }
+        .dashboard-card .card-body-icon { position: absolute; z-index: 0; top: 50%; right: -15px; transform: translateY(-50%); font-size: 5rem; opacity: 0.15; transition: all 0.4s ease; }
+        .dashboard-card:hover .card-body-icon { opacity: 0.25; transform: translateY(-50%) scale(1.1) rotate(-10deg); }
+        .bg-agro-primary { background-image: linear-gradient(45deg, #28a745, #2ed573); }
+        .bg-agro-warning { background-image: linear-gradient(45deg, #f39c12, #f1c40f); }
+        .bg-agro-info { background-image: linear-gradient(45deg, #3498db, #5dade2); }
+        .bg-agro-danger { background-image: linear-gradient(45deg, #e74c3c, #f1948a); }
+        .dashboard-card .card-footer { background-color: rgba(0,0,0,0.2); }
+        .dashboard-card .card-footer a:hover { color: #ffffff; }
+
+        /* 6. Cards de Gráfico */
+        .chart-card { border: none; border-radius: var(--raio-borda); box-shadow: var(--sombra-padrao); background-color: #ffffff; }
+        .chart-card .card-header { background-color: transparent; border-bottom: 1px solid rgba(0,0,0,0.05); color: var(--cor-secundaria); font-weight: 600; }
+
+        /* 7. Footer */
+        .footer { background-color: #ffffff; color: var(--cor-texto-claro); padding: 1.5rem; border-top: 1px solid #e9ecef; }
+        .footer a { color: var(--cor-secundaria); font-weight: 500; text-decoration: none; }
+        .footer a:hover { color: var(--cor-primaria); }
+
+        /* 8. Layout do Sidenav (Correção) */
+        #layoutSidenav { display: flex; }
+        #layoutSidenav_nav { position: relative; flex-basis: var(--sidenav-width); flex-shrink: 0; transition: transform 0.15s ease-in-out; z-index: 1038; }
+        #layoutSidenav_content { position: relative; flex-grow: 1; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        .sb-nav-fixed #layoutSidenav_content { padding-top: var(--topnav-height); }
+        
+        @media (min-width: 992px) {
+            .sb-sidenav-toggled #layoutSidenav_nav { transform: translateX(calc(-1 * var(--sidenav-width))); }
+            .sb-sidenav-toggled #layoutSidenav_content { margin-left: calc(-1 * var(--sidenav-width)); }
         }
 
-        /* Cards de Dashboard (Info Cards) */
-        .dashboard-card {
-            border-radius: 0.5rem;
-            color: #fff;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            position: relative; /* Para stretched-link */
-        }
-        .dashboard-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-        }
-        .dashboard-card .card-body {
-            padding: 1.25rem;
-            position: relative; /* Para o ícone de fundo */
-            z-index: 2;
-        }
-        .dashboard-card .card-body-icon {
-            position: absolute;
-            z-index: 1;
-            top: 50%;
-            right: 15px;
-            transform: translateY(-50%);
-            font-size: 4rem; /* Tamanho do ícone de fundo */
-            opacity: 0.2;
-            transition: opacity 0.3s ease;
-        }
-        .dashboard-card:hover .card-body-icon {
-            opacity: 0.3;
-        }
-        .dashboard-card .card-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        .dashboard-card .card-text { /* Para números grandes */
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-        .dashboard-card .card-footer {
-            background-color: rgba(0,0,0,0.15);
-            border-top: none;
-            padding: 0.75rem 1.25rem;
-            font-size: 0.9rem;
-        }
-        .dashboard-card .card-footer a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-        }
-        .dashboard-card .card-footer a:hover {
-            color: #ffffff;
-        }
-        .dashboard-card .card-footer .bi-arrow-right-circle-fill {
-            transition: transform 0.2s ease;
-        }
-        .dashboard-card:hover .card-footer .bi-arrow-right-circle-fill {
-            transform: translateX(3px);
-        }
-
-        /* Cores específicas para Dashboard Cards */
-        .bg-agro-primary { background-color: #27ae60 !important; } /* Verde mais vibrante */
-        .bg-agro-warning { background-color: #f39c12 !important; } /* Laranja */
-        .bg-agro-info    { background-color: #3498db !important; } /* Azul claro */
-        .bg-agro-danger  { background-color: #e74c3c !important; } /* Vermelho suave */
-
-
-        /* Formulários */
-        .form-label { font-weight: 500; color: #495057; }
-        .form-control, .form-select {
-            border-radius: 0.3rem;
-            border: 1px solid #ced4da;
-            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        }
-        .form-control:focus, .form-select:focus {
-            border-color: #28a745;
-            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
-        }
-
-        /* Botões */
-        .btn {
-            border-radius: 0.3rem;
-            padding: 0.5rem 1rem;
-            font-weight: 500;
-            transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
-        }
-        .btn .bi { margin-right: 0.3rem; vertical-align: text-bottom; }
-        .btn-success { background-color: #28a745; border-color: #28a745; }
-        .btn-success:hover { background-color: #218838; border-color: #1e7e34; transform: translateY(-2px); }
-        .btn-success:active { transform: translateY(0); }
-
-        /* Tabelas */
-        .table { margin-bottom: 0; border-collapse: separate; border-spacing: 0; }
-        .table th { background-color: #e9ecef; color: #2c3e50; font-weight: 600; border-bottom-width: 2px; border-color: #dee2e6; text-align: left; padding: 0.9rem; }
-        .table td { padding: 0.9rem; vertical-align: middle; border-top: 1px solid #dee2e6; }
-        .table .badge { font-size: 0.85em; padding: 0.4em 0.7em; }
-        .table tbody tr:nth-of-type(odd) { background-color: rgba(0,0,0,0.02); }
-        .table tbody tr:hover { background-color: #f1f1f1; }
-        .table-responsive { border-radius: 0.3rem; }
-
-        /* Footer */
-        .footer {
-            background-color: #2c3e50; /* Nosso azul escuro padrão */
-            color: rgba(255,255,255,0.7);
-            padding: 1.5rem 0;
-            font-size: 0.9rem;
-        }
-        .footer a {
-            color: rgba(255,255,255,0.9);
-        }
-        .footer a:hover {
-            color: #ffffff;
-        }
     </style>
 </head>
 
 <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark"> <a class="navbar-brand ps-3" href="index.html"><i class="bi bi-tree-fill me-2"></i>SistemaAgro</a>
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="bi bi-list fs-4"></i></button> <div class="ms-auto"></div> <ul class="navbar-nav ms-md-0 me-3 me-lg-4">
+
+    <nav class="sb-topnav navbar navbar-expand">
+        <a class="navbar-brand ps-3" href="index.html"><i class="bi bi-tree-fill me-2"></i>SistemaAgro</a>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="bi bi-list fs-3"></i></button>
+        <div class="ms-auto"></div>
+        <ul class="navbar-nav ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle fs-4"></i></a> <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!"><i class="bi bi-gear-fill me-2"></i>Configurações</a></li>
-                    <li><a class="dropdown-item" href="#!"><i class="bi bi-card-list me-2"></i>Registro de Atividades</a></li>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle fs-3"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#!"><i class="bi bi-gear-fill"></i>Configurações</a></li>
+                    <li><a class="dropdown-item" href="#!"><i class="bi bi-card-list"></i>Registro de Atividades</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item text-danger" href="login.html"><i class="bi bi-box-arrow-right me-2"></i>Sair</a></li>
+                    <li><a class="dropdown-item text-danger" href="login.html"><i class="bi bi-box-arrow-right"></i>Sair</a></li>
                 </ul>
             </li>
         </ul>
     </nav>
+
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <a class="nav-link active" href="index.html"> <i class="bi bi-speedometer2"></i>Painel de Controle
-                        </a>
-                        <a class="nav-link" href="agendamento.html">
-                            <i class="bi bi-calendar-check-fill"></i>Agendamentos
-                        </a>
-                        <a class="nav-link" href="recurso.html">
-                            <i class="bi bi-tools"></i>Recursos
-                        </a>
-                        <a class="nav-link" href="disponibilidadeRecurso.html">
-                            <i class="bi bi-calendar-range"></i>Disponibilidade
-                        </a>
-                        <a class="nav-link" href="servico.html">
-                            <i class="bi bi-gear-fill"></i>Serviços
-                        </a>
-                        <a class="nav-link" href="agricultores.html">
-                            <i class="bi bi-people-fill"></i>Agricultores
-                        </a>
-                        <a class="nav-link" href="tecnicos.html">
-                            <i class="bi bi-person-badge-fill"></i>Técnicos
-                        </a>
-                        <a class="nav-link" href="notificacoes.html">
-                            <i class="bi bi-bell-fill"></i>Notificações
-                        </a>
-                        <a class="nav-link" href="auditoria.html">
-                            <i class="bi bi-clipboard-data-fill"></i>Auditoria
-                        </a>
+                        <div class="sb-sidenav-menu-heading">Principal</div>
+                        <a class="nav-link active" href="index.html"><i class="bi bi-speedometer2"></i>Painel de Controle</a>
+                        <a class="nav-link" href="agendamento.html"><i class="bi bi-calendar-check-fill"></i>Agendamentos</a>
+                        
+                        <div class="sb-sidenav-menu-heading">Gerenciamento</div>
+                        <a class="nav-link" href="recurso.html"><i class="bi bi-tools"></i>Recursos</a>
+                        <a class="nav-link" href="disponibilidadeRecurso.html"><i class="bi bi-calendar-range"></i>Disponibilidade</a>
+                        <a class="nav-link" href="servico.html"><i class="bi bi-gear-fill"></i>Serviços</a>
+                        
+                        <div class="sb-sidenav-menu-heading">Usuários</div>
+                        <a class="nav-link" href="agricultores.html"><i class="bi bi-people-fill"></i>Agricultores</a>
+                        <a class="nav-link" href="tecnicos.html"><i class="bi bi-person-badge-fill"></i>Técnicos</a>
+                        
+                         <div class="sb-sidenav-menu-heading">Sistema</div>
+                        <a class="nav-link" href="notificacoes.html"><i class="bi bi-bell-fill"></i>Notificações</a>
+                        <a class="nav-link" href="auditoria.html"><i class="bi bi-clipboard-data-fill"></i>Auditoria</a>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
-                    <div class="small">Logado como:</div>
-                    Usuário Admin
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-person-circle fs-5 me-2"></i>
+                        <div>
+                             <div class="small">Logado como:</div>
+                             <strong>Usuário Admin</strong>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </div>
+
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">Painel de Controle</h1>
+                <div class="container-fluid">
+                    <h1 class="display-5 mb-2">Painel de Controle</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Visão Geral do Sistema</li>
                     </ol>
                     <div class="row">
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card dashboard-card bg-agro-primary text-white">
+                            <div class="card dashboard-card bg-agro-primary">
                                 <div class="card-body">
                                     <div class="card-body-icon"><i class="bi bi-calendar-check"></i></div>
-                                    <div class="card-title">Agendamentos</div>
-                                    <div class="card-text">25</div>
+                                    <h5 class="card-title">Agendamentos</h5>
+                                    <p class="card-text h2 fw-bold">25</p>
                                     <p class="small mb-0">Próximos 7 dias</p>
                                 </div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="agendamento.html">Ver Detalhes</a>
-                                    <div class="small text-white"><i class="bi bi-arrow-right-circle-fill"></i></div>
-                                </div>
+                                <a class="card-footer text-white stretched-link" href="agendamento.html">
+                                    <span class="float-start">Ver Detalhes</span>
+                                    <span class="float-end"><i class="bi bi-arrow-right-circle-fill"></i></span>
+                                </a>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card dashboard-card bg-agro-warning text-white">
+                            <div class="card dashboard-card bg-agro-warning">
                                 <div class="card-body">
                                     <div class="card-body-icon"><i class="bi bi-tools"></i></div>
-                                    <div class="card-title">Recursos</div>
-                                    <div class="card-text">12</div>
+                                    <h5 class="card-title">Recursos</h5>
+                                    <p class="card-text h2 fw-bold">12</p>
                                     <p class="small mb-0">Ativos</p>
                                 </div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="recurso.html">Ver Detalhes</a>
-                                    <div class="small text-white"><i class="bi bi-arrow-right-circle-fill"></i></div>
-                                </div>
+                                 <a class="card-footer text-white stretched-link" href="recurso.html">
+                                    <span class="float-start">Ver Detalhes</span>
+                                    <span class="float-end"><i class="bi bi-arrow-right-circle-fill"></i></span>
+                                </a>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card dashboard-card bg-agro-info text-white">
+                            <div class="card dashboard-card bg-agro-info">
                                 <div class="card-body">
-                                     <div class="card-body-icon"><i class="bi bi-gear"></i></div>
-                                    <div class="card-title">Serviços</div>
-                                    <div class="card-text">8</div>
-                                     <p class="small mb-0">Disponíveis</p>
+                                    <div class="card-body-icon"><i class="bi bi-gear"></i></div>
+                                    <h5 class="card-title">Serviços</h5>
+                                    <p class="card-text h2 fw-bold">8</p>
+                                    <p class="small mb-0">Disponíveis</p>
                                 </div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="servico.html">Ver Detalhes</a>
-                                    <div class="small text-white"><i class="bi bi-arrow-right-circle-fill"></i></div>
-                                </div>
+                                <a class="card-footer text-white stretched-link" href="servico.html">
+                                    <span class="float-start">Ver Detalhes</span>
+                                    <span class="float-end"><i class="bi bi-arrow-right-circle-fill"></i></span>
+                                </a>
                             </div>
                         </div>
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card dashboard-card bg-agro-danger text-white">
+                            <div class="card dashboard-card bg-agro-danger">
                                 <div class="card-body">
                                     <div class="card-body-icon"><i class="bi bi-bell"></i></div>
-                                    <div class="card-title">Notificações</div>
-                                    <div class="card-text">3</div>
+                                    <h5 class="card-title">Notificações</h5>
+                                    <p class="card-text h2 fw-bold">3</p>
                                     <p class="small mb-0">Não Lidas</p>
                                 </div>
-                                <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="notificacoes.html">Ver Detalhes</a>
-                                    <div class="small text-white"><i class="bi bi-arrow-right-circle-fill"></i></div>
-                                </div>
+                                <a class="card-footer text-white stretched-link" href="notificacoes.html">
+                                    <span class="float-start">Ver Detalhes</span>
+                                    <span class="float-end"><i class="bi bi-arrow-right-circle-fill"></i></span>
+                                </a>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-xl-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="bi bi-bar-chart-line-fill"></i>
-                                    Agendamentos por Mês
-                                </div>
-                                <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                            <div class="card chart-card mb-4">
+                                <div class="card-header"><i class="bi bi-bar-chart-line-fill me-2"></i>Agendamentos por Mês</div>
+                                <div class="card-body"><canvas id="myAreaChart" width="100%" height="240"></canvas></div>
                             </div>
                         </div>
                         <div class="col-xl-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="bi bi-pie-chart-fill"></i>
-                                    Uso de Recursos
-                                </div>
-                                <div class="card-body"><canvas id="myPieChart" width="100%" height="40"></canvas></div>
+                            <div class="card chart-card mb-4">
+                                <div class="card-header"><i class="bi bi-pie-chart-fill me-2"></i>Uso de Recursos</div>
+                                <div class="card-body"><canvas id="myPieChart" width="100%" height="240"></canvas></div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </main>
-            <footer class="footer mt-auto"> <div class="container-fluid px-4">
+            <footer class="footer mt-auto py-3">
+                 <div class="container-fluid">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; SistemaAgro 2025</div>
-                        <div>
-                            <a href="#">Política de Privacidade</a> &middot; <a href="#">Termos &amp; Condições</a>
-                        </div>
+                        <div>Copyright &copy; SistemaAgro 2025</div>
+                        <div><a href="#">Política de Privacidade</a> &middot; <a href="#">Termos &amp; Condições</a></div>
                     </div>
                 </div>
             </footer>
         </div>
     </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Simples script para toggle da sidebar se não estiver usando o do SB Admin
+        // --- SCRIPT 1: CONTROLE DA SIDEBAR ---
         window.addEventListener('DOMContentLoaded', event => {
             const sidebarToggle = document.body.querySelector('#sidebarToggle');
             if (sidebarToggle) {
@@ -402,51 +260,85 @@
                     localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
                 });
             }
-        });
+        
+            // --- SCRIPT 2: CONFIGURAÇÃO DOS GRÁFICOS ---
 
-        // Placeholder para dados de gráfico (exemplo)
-        // Substitua por sua lógica real de carregamento de dados
-        // Chart.js Area Chart Example
-        // var ctxArea = document.getElementById("myAreaChart");
-        // if (ctxArea) {
-        //     var myAreaChart = new Chart(ctxArea, {
-        //         type: 'line',
-        //         data: {
-        //             labels: ["Mar 1", "Mar 2", "Mar 3", "Mar 4", "Mar 5", "Mar 6", "Mar 7", "Mar 8", "Mar 9", "Mar 10", "Mar 11", "Mar 12", "Mar 13"],
-        //             datasets: [{
-        //                 label: "Agendamentos",
-        //                 lineTension: 0.3,
-        //                 backgroundColor: "rgba(40,167,69,0.2)",
-        //                 borderColor: "rgba(40,167,69,1)",
-        //                 pointRadius: 5,
-        //                 pointBackgroundColor: "rgba(40,167,69,1)",
-        //                 pointBorderColor: "rgba(255,255,255,0.8)",
-        //                 pointHoverRadius: 5,
-        //                 pointHoverBackgroundColor: "rgba(40,167,69,1)",
-        //                 pointHitRadius: 50,
-        //                 pointBorderWidth: 2,
-        //                 data: [10, 12, 8, 15, 13, 17, 20, 18, 22, 25, 23, 28, 30],
-        //             }],
-        //         },
-        //         options: { // ... suas opções de gráfico ... }
-        //     });
-        // }
-        // Chart.js Pie Chart Example
-        // var ctxPie = document.getElementById("myPieChart");
-        // if (ctxPie) {
-        //     var myPieChart = new Chart(ctxPie, {
-        //         type: 'pie',
-        //         data: {
-        //             labels: ["Tratores", "Colheitadeiras", "Pulverizadores", "Outros"],
-        //             datasets: [{
-        //                 data: [40, 25, 20, 15],
-        //                 backgroundColor: ['#27ae60', '#f39c12', '#3498db', '#95a5a6'],
-        //             }],
-        //         },
-        //        options: { // ... suas opções de gráfico ... }
-        //     });
-        // }
+            // Define a fonte padrão para todos os gráficos, combinando com o design
+            Chart.defaults.font.family = "'Poppins', sans-serif";
+            Chart.defaults.font.weight = '500';
+
+            // --- GRÁFICO DE ÁREA: Agendamentos por Mês ---
+            const ctxArea = document.getElementById('myAreaChart');
+            if (ctxArea) {
+                const myAreaChart = new Chart(ctxArea, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                        datasets: [{
+                            label: "Agendamentos",
+                            data: [130, 155, 180, 160, 210, 240, 220, 250, 280, 265, 290, 320],
+                            fill: true,
+                            backgroundColor: 'rgba(40, 167, 69, 0.1)', // Verde do tema com transparência
+                            borderColor: '#28a745', // Verde sólido do tema
+                            tension: 0.4, // Linhas mais suaves
+                            pointBackgroundColor: '#28a745',
+                            pointBorderColor: '#fff',
+                            pointHoverRadius: 7,
+                            pointRadius: 5
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                grid: { display: false }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                grid: { color: '#eef0f2' }
+                            }
+                        },
+                        plugins: {
+                            legend: { display: false }
+                        }
+                    }
+                });
+            }
+
+            // --- GRÁFICO DE PIZZA: Uso de Recursos ---
+            const ctxPie = document.getElementById('myPieChart');
+            if (ctxPie) {
+                const myPieChart = new Chart(ctxPie, {
+                    type: 'pie',
+                    data: {
+                        labels: ["Tratores", "Colheitadeiras", "Pulverizadores", "Outros"],
+                        datasets: [{
+                            data: [45, 25, 15, 15],
+                            backgroundColor: [
+                                '#27ae60',
+                                '#f39c12',
+                                '#3498db',
+                                '#95a5a6'
+                            ],
+                            hoverOffset: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    padding: 20
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
     </script>
 </body>
-
 </html>
