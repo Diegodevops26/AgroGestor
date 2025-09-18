@@ -3,247 +3,177 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="Página de login do SistemaAgro" />
-    <meta name="author" content="SistemaAgro" />
-    <title>Login - SistemaAgro 1.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - SistemaAgro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Estilos Globais Consistentes */
         body {
-            /* 1. IMAGEM DE FUNDO COM FILTRO */
-            /* Substitua o URL abaixo pelo caminho da sua própria imagem */
-            background: linear-gradient(rgba(20, 60, 30, 0.6), rgba(20, 60, 30, 0.6)), url('https://images.unsplash.com/photo-1499529112087-3cb3b73cec95');
-            
-            /* 2. AJUSTES DA IMAGEM */
-            background-size: cover;       /* Faz a imagem cobrir toda a tela */
-            background-position: center;  /* Centraliza a imagem */
-            background-attachment: fixed; /* Deixa a imagem fixa durante a rolagem */
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+        }
 
-            /* 3. ESTILOS ANTERIORES MANTIDOS */
-            color: #333;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
+        .login-container {
             min-height: 100vh;
         }
 
-        #layoutAuthentication {
+        /* --- Painel Visual (Esquerda) --- */
+        .login-visual-side {
+            background: linear-gradient(rgba(20, 60, 30, 0.7), rgba(20, 60, 30, 0.7)), url('https://images.unsplash.com/photo-1621926959981-28243c3fa2df');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
+            align-items: center;      /* Centraliza horizontalmente */
+            justify-content: center;  /* Centraliza verticalmente */
+            padding: 4rem;
+            text-align: center;         /* Centraliza o texto */
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        #layoutAuthentication_content {
+        .login-visual-side .logo-icon .bi {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .login-visual-side h1 {
+            font-weight: 700;
+            font-size: 2.5rem;
+        }
+
+        .login-visual-side p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 400px;
+        }
+
+        /* --- Painel do Formulário (Direita) --- */
+        .login-form-side {
             display: flex;
-            justify-content: center;
             align-items: center;
-            flex-grow: 1;
-            padding: 2rem 0;
-            /* Espaçamento vertical */
-        }
-
-        /* Card de Login com Transparência Sutil */
-        .card {
-            border: none;
-            border-radius: 0.75rem;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Sombra mais forte para destacar no fundo */
-            overflow: hidden;
-            background-color: rgba(255, 255, 255, 0.98); /* Fundo do card levemente transparente */
-        }
-
-        .card-header {
+            justify-content: center;
             background-color: #ffffff;
-            color: #2c3e50;
-            font-weight: 600;
-            border-bottom: 1px solid #e9ecef;
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .card-header h3 {
-            font-weight: 600;
-            color: #28a745;
-            margin-bottom: 0;
-        }
-
-        .card-header .bi-tree-fill {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .card-body {
             padding: 2rem;
         }
 
-        .card-footer {
-            background-color: #f8f9fa;
-            border-top: 1px solid #e9ecef;
+        .login-form {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-form h2 {
+            font-weight: 600;
+            color: #2c3e50; /* Azul Escuro */
+            margin-bottom: 0.5rem;
+        }
+
+        .login-form .text-muted {
+            margin-bottom: 2rem;
+        }
+
+        .form-control {
+            border-radius: 0.5rem;
             padding: 1rem;
         }
-
-        .card-footer .small a {
-            color: #28a745;
-            font-weight: 600; /* Dando um pouco mais de destaque */
-        }
-
-        .card-footer .small a:hover {
-            text-decoration: underline;
-        }
-
-
-        /* Formulários Flutuantes */
-        .form-floating>.form-control,
-        .form-floating>.form-select {
-            padding-top: 1.625rem;
-            padding-bottom: 0.625rem;
-            height: calc(3.5rem + 2px);
-        }
-
-        .form-floating>label {
-            padding-top: 0.825rem;
-        }
-
+        
         .form-control:focus {
             border-color: #28a745;
             box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
         }
         
-        /* Checkbox */
         .form-check-input:checked {
             background-color: #28a745;
             border-color: #28a745;
         }
 
-        .form-check-label {
-            font-size: 0.9rem;
-        }
-
-        /* Links */
-        a.small {
-            color: #28a745;
-            font-size: 0.85rem;
-        }
-
-        a.small:hover {
-            text-decoration: underline;
-        }
-
-        /* Botão Principal */
-        .btn-agro-login {
+        .btn-login {
             background-color: #28a745;
             border-color: #28a745;
             color: white;
-            font-weight: 600; /* Dando mais peso à fonte */
-            padding: 0.75rem 1.5rem;
-            transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+            padding: 0.75rem;
+            font-weight: 500;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
         }
 
-        .btn-agro-login:hover {
+        .btn-login:hover {
             background-color: #218838;
             border-color: #1e7e34;
-            color: white;
             transform: translateY(-2px);
+            color: white;
         }
 
-        .btn-agro-login:active {
-            transform: translateY(0);
-        }
-
-        .btn-agro-login .bi {
-            margin-right: 0.5rem;
-            vertical-align: text-bottom; /* Melhor alinhamento do ícone */
-        }
-
-
-        /* Footer da Página */
-        #layoutAuthentication_footer footer {
-            background-color: transparent; /* Footer transparente para integrar com o fundo */
-            color: rgba(255, 255, 255, 0.8);
-            padding: 1.5rem 0;
+        .footer-text {
             font-size: 0.9rem;
-            margin-top: auto;
         }
-
-        #layoutAuthentication_footer footer a {
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        #layoutAuthentication_footer footer a:hover {
-            color: #ffffff;
-            text-decoration: underline;
+        
+        @media (max-width: 991.98px) {
+            .login-visual-side {
+                min-height: 350px;
+                padding: 2rem;
+            }
+            .login-form-side {
+                padding: 2rem 1.5rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div id="layoutAuthentication">
-        <div id="layoutAuthentication_content">
-            <main>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-7 col-md-8 col-sm-10">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header">
-                                    <i class="bi bi-tree-fill"></i>
-                                    <h3 class="font-weight-light my-0">SistemaAgro</h3>
-                                </div>
-                                <div class="card-body">
-                                    <form>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputEmail" type="email" placeholder="Digite seu e-mail" required />
-                                            <label for="inputEmail"><i class="bi bi-envelope-fill me-1"></i>E-mail</label>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputPassword" type="password" placeholder="Digite sua senha" required />
-                                            <label for="inputPassword"><i class="bi bi-lock-fill me-1"></i>Senha</label>
-                                        </div>
-                                        <div class="form-check mb-3">
-                                            <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
-                                            <label class="form-check-label" for="inputRememberPassword">Lembrar Senha</label>
-                                        </div>
-                                        <div class="d-grid gap-2 mt-4 mb-3">
-                                            <button class="btn btn-agro-login btn-lg" type="submit">
-                                                <i class="bi bi-box-arrow-in-right"></i>Entrar
-                                            </button>
-                                        </div>
-                                        <div class="text-center">
-                                            <a class="small" href="password.html">Esqueceu a senha?</a>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="card-footer text-center py-3">
-                                    <div class="small"><a href="register.html">Não tem uma conta? Cadastre-se!</a>
-                                    </div>
-                                </div>
+    <div class="container-fluid login-container g-0">
+        <div class="row g-0">
+
+            <div class="col-lg-7 d-none d-lg-flex login-visual-side">
+                <div>
+                    <div class="logo-icon">
+                        <i class="bi bi-tree-fill"></i>
+                    </div>
+                    <h1>SistemaAgro</h1>
+                    <p>Otimizando o campo com inteligência e logística. Acesse sua conta e gerencie suas operações de forma eficiente.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-5 col-12 login-form-side">
+                <div class="login-form">
+                    <h2>Bem-vindo de volta!</h2>
+                    <p class="text-muted">Faça login para continuar.</p>
+
+                    <form>
+                        <div class="mb-3">
+                            <label for="inputEmail" class="form-label">E-mail</label>
+                            <input class="form-control" id="inputEmail" type="email" placeholder="seuemail@exemplo.com" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="inputPassword" class="form-label">Senha</label>
+                            <input class="form-control" id="inputPassword" type="password" placeholder="Sua senha" required />
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
+                                <label class="form-check-label" for="inputRememberPassword">Lembrar senha</label>
                             </div>
+                            <a class="small text-decoration-none" href="password.html" style="color: #28a745;">Esqueceu a senha?</a>
                         </div>
+                        
+                        <div class="d-grid">
+                            <button class="btn btn-login" type="submit">Entrar</button>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-4 footer-text">
+                        <p class="text-muted">Ainda não tem uma conta? <a href="register.html" class="fw-bold text-decoration-none" style="color: #28a745;">Cadastre-se</a></p>
                     </div>
                 </div>
-            </main>
-        </div>
-        <div id="layoutAuthentication_footer">
-            <footer class="py-4 mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-white-50">Copyright &copy; SistemaAgro 2025</div>
-                        <div>
-                            <a href="#">Política de Privacidade</a>
-                            &middot;
-                            <a href="#">Termos &amp; Condições</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-</body>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
