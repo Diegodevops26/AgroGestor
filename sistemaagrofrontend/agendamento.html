@@ -7,368 +7,228 @@
     <title>SistemaAgro - Agendamentos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link href="css/styles.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        body {
-            background-color: #f4f7f6; /* Um cinza mais claro e suave */
-            color: #333;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais moderna */
+        :root {
+            --cor-primaria: #28a745; --cor-secundaria: #2c3e50; --cor-fundo: #f0f2f5;
+            --cor-texto: #343a40; --cor-texto-claro: #6c757d; --raio-borda: 0.75rem;
+            --sombra-padrao: 0 4px 12px rgba(0, 0, 0, 0.08); --sidenav-width: 250px;
         }
+        body { background-color: var(--cor-fundo); font-family: 'Poppins', sans-serif; }
+        
+        #layoutSidenav { display: flex; }
+        #layoutSidenav_nav { width: var(--sidenav-width); flex-shrink: 0; transition: margin-left 0.15s ease-in-out; }
+        #layoutSidenav_content { flex-grow: 1; min-width: 0; display: flex; flex-direction: column; min-height: 100vh;}
+        
+        .sb-nav-fixed #layoutSidenav_content { padding-top: 56px; }
 
-        /* Barra de Navegação Lateral */
-        .sb-sidenav-dark {
-            background-color: #2c3e50; /* Azul escuro mais moderno */
+        @media (min-width: 992px) {
+            .sb-sidenav-toggled #layoutSidenav_nav { margin-left: calc(-1 * var(--sidenav-width)); }
+            .sb-sidenav-toggled #layoutSidenav_content { margin-left: calc(-1 * var(--sidenav-width));}
         }
-
-        .sb-sidenav-dark .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-            transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave */
-        }
-        /* Estilo para o link ativo na Sidenav */
-        .sb-sidenav-dark .nav-link.active {
-            color: #ffffff;
-            background-color: #1abc9c; /* Cor de destaque para o item ativo */
-        }
-
-        .sb-sidenav-dark .nav-link:hover {
-            color: #ffffff;
-            background-color: #34495e; /* Leve destaque no hover */
-        }
-
-        .sb-sidenav-dark .sb-sidenav-menu-heading {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.85rem;
-        }
-        .sb-sidenav-dark .nav-link .bi { /* Espaçamento para ícones na Sidenav */
-            margin-right: 0.5rem; /* Equivalente a me-2 do Bootstrap */
-        }
-
-
-        /* Conteúdo Principal */
-        #layoutSidenav_content {
-            background-color: #f4f7f6;
-        }
-        main { /* Adicionado padding ao main como nas outras páginas */
-            padding-top: 1.25rem;
-            padding-bottom: 1.25rem;
-        }
-
-        .container-fluid {
-            padding-top: 20px; /* Mantido do CSS original da página de Agendamentos */
-            padding-bottom: 20px; /* Mantido do CSS original da página de Agendamentos */
-            padding-left: 1.5rem; /* px-4 */
-            padding-right: 1.5rem; /* px-4 */
-        }
-
-        h1.mt-4 {
-            color: #2c3e50; /* Cor do título principal */
-            font-weight: 600;
-            margin-bottom: 1rem; /* Padrão mb-4 */
-        }
-
-        .breadcrumb {
-            background-color: transparent;
-            padding: 0.5rem 1rem;
-            margin-bottom: 1.5rem;
-            border-radius: 0.25rem;
-            font-size: 0.9rem;
-        }
-        .breadcrumb-item a { /* Estilo para o link no breadcrumb */
-            color: #28a745;
-            text-decoration: none;
-        }
-        .breadcrumb-item a:hover {
-            text-decoration: underline;
-        }
-
-        .breadcrumb-item.active {
-            color: #555;
-        }
-
-        /* Cards */
-        .card {
-            border: none; /* Remover borda padrão */
-            border-radius: 0.5rem; /* Bordas mais arredondadas */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra mais suave e moderna */
-            margin-bottom: 2rem;
-            transition: transform 0.2s ease-in-out; /* Efeito de levantar no hover */
-        }
-
-        .card:hover {
-            transform: translateY(-5px); /* Leve elevação no hover */
-        }
-
-        .card-header {
-            background-color: #ffffff; /* Cabeçalho do card branco */
-            color: #2c3e50; /* Cor do texto do cabeçalho */
-            font-weight: 600;
-            border-bottom: 1px solid #e9ecef;
-            padding: 1rem 1.25rem;
-            border-top-left-radius: 0.5rem;
-            border-top-right-radius: 0.5rem;
-        }
-        .card-header .bi { /* Espaçamento para ícones no cabeçalho do card */
-             margin-right: 0.5rem;
-        }
-
-        .card-body {
-            padding: 1.5rem;
-        }
-
-        /* Formulários */
-        .form-label {
-            font-weight: 500;
-            color: #495057;
-        }
-
-        .form-control, .form-select { /* Estilo unificado para form-control e form-select */
-            border-radius: 0.3rem;
-            border: 1px solid #ced4da;
-            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        }
-
-        .form-control:focus, .form-select:focus {
-            border-color: #28a745; /* Cor do bootstrap success */
-            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
-        }
-
-        /* Botões */
-        .btn {
-            border-radius: 0.3rem;
-            padding: 0.5rem 1rem;
-            font-weight: 500;
-            transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
-        }
-        .btn .bi { /* Espaçamento para ícones em botões */
-            margin-right: 0.3rem;
-            vertical-align: text-bottom; /* Melhor alinhamento vertical do ícone com texto */
-        }
-
-        .btn-success {
-            background-color: #28a745;
-            border-color: #28a745;
-        }
-
-        .btn-success:hover {
-            background-color: #218838;
-            border-color: #1e7e34;
-            transform: translateY(-2px); /* Leve efeito de clique */
-        }
-
-        .btn-success:active {
-            transform: translateY(0);
-        }
-
-
-        /* Tabelas */
-        .table {
-            margin-bottom: 0; /* Remover margem inferior se dentro de um card-body sem mais elementos */
-            border-collapse: separate;
-            border-spacing: 0;
-        }
-
-        .table th {
-            background-color: #e9ecef; /* Fundo do cabeçalho da tabela */
-            color: #2c3e50; /* Cor do texto do cabeçalho */
-            font-weight: 600;
-            border-bottom-width: 2px;
-            border-color: #dee2e6;
-            text-align: left;
-            padding: 0.9rem;
-        }
-
-        .table td {
-            padding: 0.9rem;
-            vertical-align: middle;
-            border-top: 1px solid #dee2e6;
-        }
-        /* Badges para status na tabela */
-        .table .badge {
-            font-size: 0.85em;
-            padding: 0.4em 0.7em;
-        }
-
-        .table tbody tr:nth-of-type(odd) {
-             background-color: rgba(0,0,0,0.02); /* Listras sutis */
-        }
-
-        .table tbody tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        .table-responsive {
-            border-radius: 0.3rem;
-        }
+        
+        .sb-topnav { background-color: #fff; box-shadow: var(--sombra-padrao); z-index: 1039; }
+        .sb-sidenav-dark { background-color: var(--cor-secundaria); }
+        .sb-sidenav-dark .nav-link { color: rgba(255, 255, 255, 0.7); border-left: 4px solid transparent; transition: all 0.2s ease; padding: 0.9rem 1.5rem;}
+        .sb-sidenav-dark .nav-link.active { color: #fff; background: rgba(255,255,255,0.05); border-left-color: var(--cor-primaria); }
+        .sb-sidenav-dark .nav-link:hover { color: #fff; background: rgba(255,255,255,0.1); }
+        .sb-sidenav-dark .sb-sidenav-menu-heading { color: rgba(255, 255, 255, 0.4); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; padding: 1.5rem 1.5rem 0.75rem;}
+        .sb-sidenav-dark .nav .nav-link .bi { margin-right: 0.8rem; }
+        
+        main { flex-grow: 1; }
+        .card { border: none; border-radius: var(--raio-borda); box-shadow: var(--sombra-padrao); margin-bottom: 1.5rem; }
+        .card-header { background-color: #fff; font-weight: 600; color: var(--cor-secundaria); border-bottom: 1px solid #eef0f2; }
+        .form-control, .form-select { border-radius: 0.5rem; }
+        .form-control:focus, .form-select:focus { border-color: var(--cor-primaria); box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); }
+        .btn-success { background-color: var(--cor-primaria); border-color: var(--cor-primaria); }
+        .btn-success:hover { background-color: #218838; border-color: #1e7e34; }
+        .table-hover>tbody>tr:hover { background-color: #f8f9fa; }
+        .footer { background-color: #ffffff; color: var(--cor-texto-claro); padding: 1.5rem; border-top: 1px solid #e9ecef; }
     </style>
 </head>
 
 <body class="sb-nav-fixed">
-    <?php include 'header.html'; ?>
+    <nav class="sb-topnav navbar navbar-expand navbar-light">
+        <a class="navbar-brand ps-3 fw-bold" href="index.html" style="color: var(--cor-secundaria);"><i class="bi bi-tree-fill me-2"></i>SistemaAgro</a>
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="bi bi-list fs-3"></i></button>
+        <div class="ms-auto"></div>
+        <ul class="navbar-nav ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-circle fs-3"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="border-radius: var(--raio-borda); box-shadow: var(--sombra-hover); border:none;">
+                    <li><a class="dropdown-item" href="#!"><i class="bi bi-gear-fill me-2"></i>Configurações</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item text-danger" href="login.html"><i class="bi bi-box-arrow-right me-2"></i>Sair</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Núcleo</div>
-                        <a class="nav-link" href="index.html">
-                            <i class="bi bi-house-door-fill"></i>Painel de Controle
-                        </a>
-                        <div class="sb-sidenav-menu-heading">Interface</div>
-                        <a class="nav-link active" href="agendamento.html"> <i class="bi bi-calendar-check-fill"></i>Agendamentos
-                        </a>
-                        <a class="nav-link" href="recurso.html">
-                            <i class="bi bi-tools"></i>Recursos
-                        </a>
-                        <a class="nav-link" href="disponibilidadeRecurso.html">
-                            <i class="bi bi-calendar-range"></i>Disponibilidade
-                        </a>
-                        <a class="nav-link" href="servico.html">
-                            <i class="bi bi-gear-fill"></i>Serviços
-                        </a>
-                        <a class="nav-link" href="agricultores.html">
-                            <i class="bi bi-people-fill"></i>Agricultores
-                        </a>
-                        <a class="nav-link" href="tecnicos.html">
-                            <i class="bi bi-person-badge-fill"></i>Técnicos
-                        </a>
-                        <a class="nav-link" href="notificacoes.html">
-                            <i class="bi bi-bell-fill"></i>Notificações
-                        </a>
-                        <a class="nav-link" href="auditoria.html">
-                            <i class="bi bi-clipboard-data-fill"></i>Auditoria
-                        </a>
+                        <div class="sb-sidenav-menu-heading">Principal</div>
+                        <a class="nav-link" href="index.html"><i class="bi bi-speedometer2"></i>Dashboard</a>
+                        <a class="nav-link active" href="agendamento.html"><i class="bi bi-calendar-check-fill"></i>Agendamentos</a>
+                        
+                        <div class="sb-sidenav-menu-heading">Gerenciamento</div>
+                        <a class="nav-link" href="recurso.html"><i class="bi bi-tools"></i>Recursos</a>
+                        <a class="nav-link" href="agricultores.html"><i class="bi bi-people-fill"></i>Agricultores</a>
+                        <a class="nav-link" href="tecnicos.html"><i class="bi bi-person-badge-fill"></i>Técnicos</a>
+                        <a class="nav-link" href="servico.html"><i class="bi bi-gear-fill"></i>Serviços</a>
                     </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logado como:</div>
+                    Usuário Admin
                 </div>
             </nav>
         </div>
         <div id="layoutSidenav_content">
-            <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">Agendamentos</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="index.html">Painel de Controle</a></li>
+            <main class="py-4 px-lg-4">
+                <div class="container-fluid">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h1 class="h2 text-secondary fw-bold">Gerenciar Agendamentos</h1>
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#novoAgendamentoModal">
+                            <i class="bi bi-plus-circle-fill me-2"></i>Novo Agendamento
+                        </button>
+                    </div>
+                    <ol class="breadcrumb mt-2 mb-4 bg-light p-2 rounded-3">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                         <li class="breadcrumb-item active">Agendamentos</li>
                     </ol>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="bi bi-calendar-plus-fill"></i>Novo Agendamento
+
+                    <div class="card mb-4">
+                        <div class="card-body">
+                           <form class="row g-3 align-items-center">
+                                <div class="col-md-5">
+                                    <input type="text" class="form-control" placeholder="Pesquisar por nome do agricultor ou técnico...">
                                 </div>
-                                <div class="card-body">
-                                    <form action="processa_agendamento.php" method="POST">
-                                        <div class="mb-3">
-                                            <label for="userName" class="form-label">Nome do Usuário</label>
-                                            <input type="text" class="form-control" id="userName" name="userName" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="resourceName" class="form-label">Nome do Recurso</label>
-                                            <input type="text" class="form-control" id="resourceName" name="resourceName" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="serviceName" class="form-label">Nome do Serviço</label>
-                                            <input type="text" class="form-control" id="serviceName" name="serviceName" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="date" class="form-label">Data</label>
-                                            <input type="date" class="form-control" id="date" name="date" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="startTime" class="form-label">Horário de Início</label>
-                                            <input type="time" class="form-control" id="startTime" name="startTime" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="endTime" class="form-label">Horário de Fim</label>
-                                            <input type="time" class="form-control" id="endTime" name="endTime" required>
-                                        </div>
-                                        <button type="submit" class="btn btn-success w-100">
-                                            <i class="bi bi-check-circle-fill"></i>Agendar
-                                        </button>
-                                    </form>
+                                <div class="col-md-3">
+                                    <input type="date" class="form-control" value="2025-09-03">
                                 </div>
-                            </div>
+                                <div class="col-md-3">
+                                    <select class="form-select">
+                                        <option selected>Todos os Status</option>
+                                        <option value="1">Confirmado</option>
+                                        <option value="2">Pendente</option>
+                                        <option value="3">Cancelado</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-1 d-grid">
+                                    <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="col-md-6">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="bi bi-list-task"></i>Agendamentos Existentes
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nome do Usuário</th>
-                                                    <th>Recurso</th>
-                                                    <th>Serviço</th>
-                                                    <th>Data</th>
-                                                    <th>Início</th>
-                                                    <th>Fim</th>
-                                                    <th>Status</th>
-                                                    <th>Ações</th> </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>João Silva</td>
-                                                    <td>Trator</td>
-                                                    <td>Plantio</td>
-                                                    <td>01/10/2023</td>
-                                                    <td>09:00</td>
-                                                    <td>10:00</td>
-                                                    <td><span class="badge bg-success">Confirmado</span></td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-sm btn-outline-primary me-1" title="Editar Agendamento">
-                                                            <i class="bi bi-pencil-square"></i>
-                                                        </button>
-                                                        <button type="button" class="btn btn-sm btn-outline-danger" title="Cancelar Agendamento">
-                                                            <i class="bi bi-x-circle-fill"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Maria Oliveira</td>
-                                                    <td>Colheitadeira</td>
-                                                    <td>Colheita</td>
-                                                    <td>02/10/2023</td>
-                                                    <td>11:00</td>
-                                                    <td>12:00</td>
-                                                    <td><span class="badge bg-warning text-dark">Pendente</span></td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-sm btn-outline-primary me-1" title="Editar Agendamento">
-                                                            <i class="bi bi-pencil-square"></i>
-                                                        </button>
-                                                        <button type="button" class="btn btn-sm btn-outline-danger" title="Cancelar Agendamento">
-                                                            <i class="bi bi-x-circle-fill"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                 <tr>
-                                                    <td>Carlos Pereira</td>
-                                                    <td>Pulverizador</td>
-                                                    <td>Aplicação Defensivos</td>
-                                                    <td>03/10/2023</td>
-                                                    <td>14:00</td>
-                                                    <td>16:00</td>
-                                                    <td><span class="badge bg-danger">Cancelado</span></td>
-                                                     <td>
-                                                        <button type="button" class="btn btn-sm btn-outline-secondary me-1" title="Ver Detalhes" disabled>
-                                                            <i class="bi bi-eye-fill"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header"><i class="bi bi-list-task me-2"></i>Próximos Agendamentos</div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Agricultor</th>
+                                            <th>Serviço</th>
+                                            <th>Técnico</th>
+                                            <th>Data & Hora</th>
+                                            <th>Status</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </main>
-            <?php include 'footer.html'; ?>
+            <footer class="footer">
+                 <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div>Copyright &copy; SistemaAgro 2025</div>
+                        <div><a href="#">Política de Privacidade</a> &middot; <a href="#">Termos & Condições</a></div>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
 
+    <div class="modal fade" id="novoAgendamentoModal" tabindex="-1" aria-labelledby="novoAgendamentoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: var(--raio-borda);">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="novoAgendamentoModalLabel"><i class="bi bi-calendar-plus-fill me-2"></i>Criar Novo Agendamento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="agricultorSelect" class="form-label">Agricultor/Propriedade</label>
+                            <select class="form-select" id="agricultorSelect" required>
+                                <option selected disabled value="">Selecione...</option>
+                                <option>João Silva</option>
+                                <option>Carlos Pereira</option>
+                                <option>Fazenda Bela Vista</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="servicoSelect" class="form-label">Serviço</label>
+                            <select class="form-select" id="servicoSelect" required>
+                                <option selected disabled value="">Selecione...</option>
+                                <option>Análise de Solo</option>
+                                <option>Plantio Assistido</option>
+                                <option>Manutenção de Irrigador</option>
+                                <option>Colheita de Milho</option>
+                            </select>
+                        </div>
+                         <div class="mb-3">
+                            <label for="tecnicoSelect" class="form-label">Atribuir a Técnico (Opcional)</label>
+                            <select class="form-select" id="tecnicoSelect">
+                                <option selected>Nenhum (alocar depois)</option>
+                                <option>Maria Souza</option>
+                                <option>Pedro Costa</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="data" class="form-label">Data</label>
+                                <input type="date" class="form-control" id="data" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="hora" class="form-label">Horário</label>
+                                <input type="time" class="form-control" id="hora" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-success"><i class="bi bi-check-circle-fill me-2"></i>Salvar Agendamento</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', event => {
+            const sidebarToggle = document.body.querySelector('#sidebarToggle');
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', event => {
+                    event.preventDefault();
+                    document.body.classList.toggle('sb-sidenav-toggled');
+                    localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+                });
+            }
+        });
+    </script>
+</body>
 </html>
