@@ -1,108 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>SistemaAgro - Registro</title>
-    <!-- Alterado para refletir o nome do sistema -->
-    <link href="css/styles.css" rel="stylesheet" />
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SistemaAgro - Crie sua Conta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        .register-container {
+            min-height: 100vh;
+        }
+
+        /* --- Painel Visual (Esquerda) --- */
+        .register-visual-side {
+            background: linear-gradient(rgba(20, 60, 30, 0.7), rgba(20, 60, 30, 0.7)), url('https://images.unsplash.com/photo-1621926959981-28243c3fa2df');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .register-visual-side .logo-icon .bi { font-size: 3.5rem; margin-bottom: 1rem; }
+        .register-visual-side h1 { font-weight: 700; font-size: 2.5rem; }
+        .register-visual-side p { font-size: 1.1rem; opacity: 0.9; max-width: 400px; }
+
+        /* --- Painel do Formulário (Direita) --- */
+        .register-form-side {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            padding: 2rem;
+        }
+
+        .register-form { width: 100%; max-width: 450px; }
+        .register-form h2 { font-weight: 600; color: #2c3e50; margin-bottom: 0.5rem; }
+        .register-form .text-muted { margin-bottom: 1.5rem; }
+
+        .form-control { border-radius: 0.5rem; padding: 0.8rem 1rem; }
+        .form-control:focus { border-color: #28a745; box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); }
+        .btn-register {
+            background-color: #28a745; border-color: #28a745; color: white;
+            padding: 0.75rem; font-weight: 500; border-radius: 0.5rem; transition: all 0.2s ease;
+        }
+        .btn-register:hover { background-color: #218838; border-color: #1e7e34; transform: translateY(-2px); color: white; }
+        .footer-text { font-size: 0.9rem; }
+        
+        /* Estilo para seleção de perfil */
+        .profile-select .form-check-input { display: none; }
+        .profile-select .form-check-label {
+            display: block; border: 2px solid #e9ecef; border-radius: 0.5rem;
+            padding: 1rem; text-align: center; cursor: pointer; transition: all 0.2s ease;
+        }
+        .profile-select .form-check-label:hover { border-color: #ced4da; }
+        .profile-select .form-check-input:checked + .form-check-label {
+            background-color: #e9f5e9; border-color: var(--cor-primaria);
+            color: var(--cor-primaria); box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        }
+        .profile-select .bi { font-size: 1.5rem; display: block; margin-bottom: 0.5rem; }
+
+        @media (max-width: 991.98px) {
+            .register-visual-side { min-height: 350px; }
+        }
+    </style>
 </head>
 
-<body class="bg-success">
-    <!-- Alterado para bg-success -->
-    <div id="layoutAuthentication">
-        <div id="layoutAuthentication_content">
-            <main>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-7">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header">
-                                    <h3 class="text-center font-weight-light my-4">Criar Conta</h3>
+<body>
+    <div class="container-fluid register-container g-0">
+        <div class="row g-0">
+
+            <div class="col-lg-6 d-none d-lg-flex register-visual-side">
+                <div>
+                    <div class="logo-icon"><i class="bi bi-tree-fill"></i></div>
+                    <h1>SistemaAgro</h1>
+                    <p>Otimizando o campo com inteligência e logística. Crie sua conta e comece a gerenciar suas operações de forma eficiente.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-12 register-form-side">
+                <div class="register-form">
+                    <h2>Crie sua Conta</h2>
+                    <p class="text-muted">Comece a gerenciar suas operações hoje mesmo.</p>
+
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-6"><label class="form-label">Nome</label><input class="form-control" type="text" required /></div>
+                            <div class="col-6"><label class="form-label">Sobrenome</label><input class="form-control" type="text" required /></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">E-mail</label>
+                            <input class="form-control" type="email" placeholder="seuemail@exemplo.com" required />
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-6"><label class="form-label">Senha</label><input class="form-control" type="password" required /></div>
+                            <div class="col-6"><label class="form-label">Confirmar Senha</label><input class="form-control" type="password" required /></div>
+                        </div>
+
+                        <div class="mb-3 profile-select">
+                            <label class="form-label">Qual é o seu perfil?</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="radio" class="form-check-input" name="profile" id="profileFarmer" value="farmer" checked>
+                                    <label class="form-check-label" for="profileFarmer"><i class="bi bi-person-fill"></i>Sou Administrador</label>
                                 </div>
-                                <!-- Alterado para português -->
-                                <div class="card-body">
-                                    <form>
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputFirstName" type="text" placeholder="Digite seu primeiro nome" />
-                                                    <!-- Alterado para português -->
-                                                    <label for="inputFirstName">Primeiro nome</label>
-                                                    <!-- Alterado para português -->
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-floating">
-                                                    <input class="form-control" id="inputLastName" type="text" placeholder="Digite seu sobrenome" />
-                                                    <!-- Alterado para português -->
-                                                    <label for="inputLastName">Sobrenome</label>
-                                                    <!-- Alterado para português -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputEmail" type="email" placeholder="nome@exemplo.com" />
-                                            <!-- Alterado para português -->
-                                            <label for="inputEmail">Endereço de e-mail</label>
-                                            <!-- Alterado para português -->
-                                        </div>
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputPassword" type="password" placeholder="Crie uma senha" />
-                                                    <!-- Alterado para português -->
-                                                    <label for="inputPassword">Senha</label>
-                                                    <!-- Alterado para português -->
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirme a senha" />
-                                                    <!-- Alterado para português -->
-                                                    <label for="inputPasswordConfirm">Confirmar Senha</label>
-                                                    <!-- Alterado para português -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mt-4 mb-0">
-                                            <div class="d-grid"><a class="btn btn-primary btn-block" href="login.html">Criar Conta</a></div>
-                                            <!-- Alterado para português -->
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="card-footer text-center py-3">
-                                    <div class="small"><a href="login.html">Já tem uma conta? Faça login</a></div>
-                                    <!-- Alterado para português -->
+                                <div class="col-6">
+                                    <input type="radio" class="form-check-input" name="profile" id="profileTechnician" value="technician">
+                                    <label class="form-check-label" for="profileTechnician"><i class="bi bi-person-badge-fill"></i>Sou Técnico</label>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </main>
-        </div>
-        <div id="layoutAuthentication_footer">
-            <footer class="py-4 bg-light mt-auto">
-                <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; SistemaAgro 2025</div>
-                        <div>
-                            <a href="#">Política de Privacidade</a>
-                            <!-- Alterado para português -->&middot; <a href="#">Termos &amp; Condições</a>
-                            <!-- Alterado para português -->
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" value="" id="acceptTerms" required>
+                            <label class="form-check-label small" for="acceptTerms">
+                                Eu aceito os <a href="#" class="text-decoration-none" style="color: var(--cor-primaria);">Termos de Serviço</a>
+                            </label>
                         </div>
+                        
+                        <div class="d-grid mt-4">
+                            <button class="btn btn-register" type="submit">Criar Conta</button>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-4 footer-text">
+                        <p class="text-muted">Já tem uma conta? <a href="login.html" class="fw-bold text-decoration-none" style="color: var(--cor-primaria);">Faça login</a></p>
                     </div>
                 </div>
-            </footer>
+            </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
-</body>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
